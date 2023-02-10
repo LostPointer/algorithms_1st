@@ -1,4 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int main() { return 0; }
+int main() {
+  int *foo = new int[10];
+  return 0;
+}

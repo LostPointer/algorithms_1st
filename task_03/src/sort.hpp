@@ -4,27 +4,27 @@
 
 template <typename T>
 void Merge(std::vector<T> &data, int p, int q, int r) {
-  std::vector<T> aboba;
+  std::vector<T> array;
   int i = p, j = q;
   while (i < q && j < r) {
     if (data[i] <= data[j]) {
-      aboba.push_back(data[i]);
+      array.push_back(data[i]);
       i++;
     } else if (data[i] > data[j]) {
-      aboba.push_back(data[j]);
+      array.push_back(data[j]);
       j++;
     }
   }
   while (i < q) {
-    aboba.push_back(data[i]);
+    array.push_back(data[i]);
     i++;
   }
   while (j < r) {
-    aboba.push_back(data[j]);
+    array.push_back(data[j]);
     j++;
   }
-  for (int k = 0; k < aboba.size(); k++) {
-    data[p + k] = aboba[k];
+  for (int k = 0; k < array.size(); k++) {
+    data[p + k] = array[k];
   }
 }
 

@@ -4,20 +4,25 @@
 
 template <typename T>
 struct Dot {
+ private:
+  Dot *back = nullptr;
+  Dot *next = nullptr;
+  T value = T();
+
  public:
-  Dot *back;
-  Dot *next;
-  T value;
-  Dot(Dot *finish1, T value1) {
-    next = nullptr;
-    back = finish1;
-    value = value1;
+  Dot(Dot *finish1, T value1) : back(finish1), value(value1) {
+    // back = finish1;
+    // value = value1;
   }
-  Dot(T value1) {
-    back = nullptr;
-    next = nullptr;
-    value = value1;
+  Dot(T value1) : value(value1) {
+    // back = nullptr;
+    // next = nullptr;
+    // value = value1;
   }
+  Dot() {}
+  Dot *GetBack() { return this->back; }
+  Dot *GetNext() { return this->next; }
+  T GetValue() { return this->value; }
 };
 
 template <typename T>
@@ -45,7 +50,8 @@ void Stack<T>::Push(T value) {
     finish_ = new_Dot;
   } else {
     Dot<T> *new_Dot = new Dot(finish_, value);
-    finish_->next = new_Dot;
+    auto tmp = finish_->GetNext();
+    tmp = new_Dot;
     finish_ = new_Dot;
   }
   size_ += 1;
@@ -54,15 +60,16 @@ void Stack<T>::Push(T value) {
 template <typename T>
 T Stack<T>::Pop() {
   if (size_ > 1) {
-    T value = finish_->value;
+    T value = finish_->GetValue();
     Dot<T> *temp = finish_;
-    finish_->back->next = nullptr;
-    finish_ = finish_->back;
+    auto tmp = finish_->GetBack()->GetNext();
+    tmp = nullptr;
+    finish_ = finish_->GetBack();
     delete temp;
     size_ -= 1;
     return value;
   } else if (size_ == 1) {
-    T value = finish_->value;
+    T value = finish_->GetValue();
     Dot<T> *temp = finish_;
     start_ = nullptr;
     finish_ = nullptr;
@@ -85,13 +92,14 @@ struct DotWithMin {
   DotWithMin *next;
   T value;
   T min_value;
-  DotWithMin(DotWithMin *finish1, T value1, T value2) {
-    next = nullptr;
-    back = finish1;
+  DotWithMin(DotWithMin *finish1, T value1, T value2)
+      : next(nullptr), back(finish1), value(value1), min_value(value1) {
+    // next = nullptr;
+    // back = finish1;
     value = value1;
     min_value = value2;
   }
-  DotWithMin(T value1) {
+  DotWithMin(T value1) : back(nullptr) {
     back = nullptr;
     next = nullptr;
     value = value1;

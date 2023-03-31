@@ -36,7 +36,7 @@ class Stack {
 };
 
 template <typename T>
-void Stack<T>::Push(T value) {
+void Stack<T>::Push(T  /*value*/) {
   if (!start_) {
     Dot<T> *new_Dot = new Dot(value);
     start_ = new_Dot;

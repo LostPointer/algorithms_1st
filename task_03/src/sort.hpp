@@ -3,10 +3,10 @@
 #include <vector>
 
 template <typename T>
-void Merge(std::vector<T> &data, int p, int q, int r) {
+void Merge(std::vector<T> &data, int start, int center, int finish) {
   std::vector<T> array;
-  int i = p, j = q;
-  while (i < q && j < r) {
+  int i = start, j = center;
+  while (i < center && j < finish) {
     if (data[i] <= data[j]) {
       array.push_back(data[i]);
       i++;
@@ -15,28 +15,28 @@ void Merge(std::vector<T> &data, int p, int q, int r) {
       j++;
     }
   }
-  while (i < q) {
+  while (i < center) {
     array.push_back(data[i]);
     i++;
   }
-  while (j < r) {
+  while (j < finish) {
     array.push_back(data[j]);
     j++;
   }
   for (int k = 0; k < array.size(); k++) {
-    data[p + k] = array[k];
+    data[start + k] = array[k];
   }
 }
 
 template <typename T>
-void MergeVector(std::vector<T> &data, int r, int p) {
-  if (p - r <= 1) {
+void MergeVector(std::vector<T> &data, int start, int finish) {
+  if (finish - start <= 1) {
     return;
   }
-  int q = (p + r) / 2;
-  MergeVector(data, r, q);
-  MergeVector(data, q, p);
-  Merge(data, r, q, p);
+  int center = (finish + start) / 2;
+  MergeVector(data, start, center);
+  MergeVector(data, center, finish);
+  Merge(data, start, center, finish);
 }
 
 template <typename T>

@@ -42,7 +42,7 @@ void Stack<T>::Push(T  /*value*/) {
     start_ = new_Dot;
     finish_ = new_Dot;
   } else {
-    Dot<T> *new_Dot = new Dot(finish_, value);
+    Dot<T> *new_Dot = nullptr = new Dot(finish_, value);
     auto tmp = finish_->GetNext();
     tmp = new_Dot;
     finish_ = new_Dot;

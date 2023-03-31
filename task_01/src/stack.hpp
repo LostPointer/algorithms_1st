@@ -37,13 +37,13 @@ class Stack {
 };
 
 template <typename T>
-void Stack<T>::Push(T  /*value*/) {
+void Stack<T>::Push(T value) {
   if (!start_) {
-    Dot<T> *new_Dot = nullptr = new Dot(value);
+    Dot<T> *new_Dot = new Dot<T>(value);
     start_ = new_Dot;
     finish_ = new_Dot;
   } else {
-    Dot<T> *new_Dot = nullptr = new Dot(finish_, value);
+    Dot<T> *new_Dot = new Dot<T>(finish_, value);
     auto tmp = finish_->GetNext();
     tmp = new_Dot;
     finish_ = new_Dot;

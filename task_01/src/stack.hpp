@@ -1,23 +1,25 @@
 #pragma once
 
-#include <stack>
 #include <vector>
 
 class Stack {
  public:
-  void Push(int value);
-  int Pop();
+  virtual void Push(int value);
+  virtual int Pop();
+  bool IsEmpty();
 
- private:
-  std::stack<int> data_;
+  int GetLast();
+
+ protected:
+  std::vector<int> data_;
 };
 
-class MinStack {
+class MinStack : Stack {
  public:
-  void Push(int value);
-  int Pop();
+  void Push(int value) override;
+  int Pop() override;
   int GetMin();
 
  private:
-  std::vector<int> data_;
+  Stack minimums_;
 };
